@@ -2,18 +2,20 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>com.oath.freemarker</groupId>
+  <groupId>org.fugerit.java</groupId>
   <artifactId>freemarker-maven-plugin</artifactId>
-  <version>1.0.${build}</version>
+  <version>1.0-SNAPSHOT</version>
   <packaging>maven-plugin</packaging>
 
   <name>Freemarker Maven Plugin</name>
-  <url>http://corp.yahoo.com</url>
+  <description>Maven Plugin for Apache Freemarker</description>
+  <url>http://www.fugerit.org</url>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.source>1.8</maven.compiler.source>
     <maven.compiler.target>1.8</maven.compiler.target>
+    <maven.test.skip>true</maven.test.skip>
     <maven-core.version>3.5.2</maven-core.version>
     <maven-plugin-api.version>3.5.2</maven-plugin-api.version>
     <maven-plugin-annotations.version>3.5</maven-plugin-annotations.version>
@@ -25,7 +27,48 @@
     <assertj-core.version>3.8.0</assertj-core.version>
     <clover-target-percentage>100</clover-target-percentage>
     <clover-phase>pre-site</clover-phase>
+	<mvn-source-version>3.1.0</mvn-source-version>
+	<mvn-javadoc-version>3.1.0</mvn-javadoc-version>    
+	<!-- release dependancies -->
+	<nexus-version>1.6.8</nexus-version>
+	<mvn-gpg-version>1.6</mvn-gpg-version>
   </properties>
+
+	<licenses>
+		<license>
+			<name>Apache License, Version 2.0</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
+
+	<developers>
+		<developer>
+			<name>Matteo a.k.a. Fugerit</name>
+			<email>m@fugerit.org</email>
+			<organization>Fugerit</organization>
+			<organizationUrl>http://www.fugerit.org</organizationUrl>
+		</developer>
+		<developer>
+			<name>Daneel</name>
+			<email>d@fugerit.org</email>
+			<organization>Fugerit</organization>
+			<organizationUrl>http://www.fugerit.org</organizationUrl>
+		</developer>
+	</developers>
+	
+	<scm>
+		<connection>scm:git:git://github.com/fugerit-org/freemarker-maven-plugin.git</connection>
+		<developerConnection>scm:git:ssh:github.com/fugerit-org/freemarker-maven-plugin.git</developerConnection>
+		<url>http://github.com/fugerit-org/fj-lib</url>
+	</scm>
+
+	<distributionManagement>
+		<snapshotRepository>
+			<id>ossrh</id>
+			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
+		</snapshotRepository>
+	</distributionManagement>	
 
   <dependencies>
     <dependency>
@@ -168,4 +211,61 @@
       </plugin>
     </plugins>
   </build>
+  
+	<profiles>
+		<profile>
+			<id>full</id>
+			<build>
+				<pluginManagement>
+					<plugins>
+						<plugin>
+							<groupId>org.apache.maven.plugins</groupId>
+							<artifactId>maven-source-plugin</artifactId>
+							<version>${mvn-source-version}</version>
+						</plugin>
+						<plugin>
+							<groupId>org.apache.maven.plugins</groupId>
+							<artifactId>maven-javadoc-plugin</artifactId>
+							<version>${mvn-javadoc-version}</version>
+						</plugin>
+					</plugins>					
+				</pluginManagement>
+			</build>
+		</profile>  
+		
+		<profile>
+			<id>doRelease</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.sonatype.plugins</groupId>
+						<artifactId>nexus-staging-maven-plugin</artifactId>
+						<version>${nexus-version}</version>
+						<extensions>true</extensions>
+						<configuration>
+							<serverId>ossrh</serverId>
+							<nexusUrl>https://oss.sonatype.org/</nexusUrl>
+							<autoReleaseAfterClose>true</autoReleaseAfterClose>
+						</configuration>
+					</plugin>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-gpg-plugin</artifactId>
+						<version>${mvn-gpg-version}</version>
+						<executions>
+							<execution>
+								<id>sign-artifacts</id>
+								<phase>verify</phase>
+								<goals>
+									<goal>sign</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>		
+		</profile>
+		
+  	</profiles>
+  
 </project>

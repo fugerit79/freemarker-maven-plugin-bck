@@ -1,3 +1,6 @@
-target
-.idea
-freemarker-maven-plugin.iml
+/target/
+/.project
+/.classpath
+/.factorypath
+/.settings/
+/.apt_generated/

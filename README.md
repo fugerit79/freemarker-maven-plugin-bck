@@ -1,3 +1,11 @@
+# Credits
+
+This is a fork of project : 
+[https://github.com/yahoo/freemarker-maven-plugin](https://github.com/yahoo/freemarker-maven-plugin)
+Main reason for forking are : 
+- need of minor changes to the original plugin
+- need of publishing on maven repository central
+
 # freemarker-maven-plugin
 > A flexible plugin to generate source files from FreeMarker templates and JSON data.
 
@@ -29,7 +37,7 @@ Add the following snippet within the `<plugins>` tag of your pom.xml:
 
 ```xml
       <plugin>
-        <groupId>com.oath</groupId>
+        <groupId>org.fugerit.java</groupId>
         <artifactId>freemarker-maven-plugin</artifactId>
         <version>${freemarker-maven-plugin.version}</version>
         <configuration>
@@ -50,7 +58,7 @@ Add the following snippet within the `<plugins>` tag of your pom.xml:
             </goals>
             <configuration>
               <!-- Optional, defaults to src/main/freemarker -->
-              <sourceDirectory>src/main/freemarker</templateDirectory>
+              <sourceDirectory>src/main/freemarker</sourceDirectory>
               <!-- Optional, defaults to src/main/freemarker/template -->
               <templateDirectory>src/main/freemarker/template</templateDirectory>
               <!-- Optional, defaults to src/main/freemarker/generator -->
