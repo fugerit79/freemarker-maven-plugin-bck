@@ -3,23 +3,24 @@
 
 package com.oath.maven.plugin.freemarker;
 
-import com.google.gson.Gson;
-import com.google.gson.stream.JsonReader;
-import mockit.Expectations;
-import mockit.Mocked;
-import mockit.Verifications;
-import org.testng.annotations.Test;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThatExceptionOfType;
+import static org.testng.AssertJUnit.assertEquals;
+import static org.testng.internal.junit.ArrayAsserts.assertArrayEquals;
 
 import java.io.File;
 import java.lang.reflect.Type;
 import java.nio.file.Path;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
-import static org.assertj.core.api.AssertionsForClassTypes.assertThatExceptionOfType;
-import static org.testng.AssertJUnit.assertEquals;
-import static org.testng.internal.junit.ArrayAsserts.assertArrayEquals;
+import org.testng.annotations.Test;
+
+import com.google.gson.Gson;
+import com.google.gson.stream.JsonReader;
+
+import mockit.Expectations;
+import mockit.Mocked;
+import mockit.Verifications;
 
 public class JsonPropertiesProviderTest {
 	private File testDir = new File("src/test/data/generating-file-visitor");

@@ -8,11 +8,12 @@ import java.nio.file.Path;
 import java.nio.file.SimpleFileVisitor;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.apache.maven.execution.MavenSession;
 
 import freemarker.template.Configuration;
-import org.apache.maven.project.MavenProject;
 
 /**
  * FileVisitor designed to process json data files. The json file parsed into
@@ -20,6 +21,8 @@ import org.apache.maven.project.MavenProject;
  */
 public class GeneratingFileVisitor extends SimpleFileVisitor<Path> {
 
+  private final static Logger logger = Logger.getLogger( GeneratingFileVisitor.class.getName() );
+	
   private final Configuration config;
   private final MavenSession session;
   private final long pomLastModifiedTimestamp;
@@ -29,10 +32,17 @@ public class GeneratingFileVisitor extends SimpleFileVisitor<Path> {
     this.config = config;
     this.session = session;
     this.extensionToBuilder = extensionToBuilder;
-    this.pomLastModifiedTimestamp = session.getAllProjects().stream()
-        .map(project->project.getFile().lastModified())
-        .reduce(Long::max)
-        .orElse(0L);
+    long plmt = System.currentTimeMillis();
+    try {
+        plmt = session.getAllProjects().stream()
+                .map(project->project.getFile().lastModified())
+                .reduce(Long::max)
+                .orElse(0L);
+    } catch (Exception e) {
+    	logger.log( Level.WARNING , "Error on init : "+e, e );
+    }
+    this.pomLastModifiedTimestamp = plmt;
+
   }
 
   /**

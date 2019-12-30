@@ -3,14 +3,14 @@
 
 package com.oath.maven.plugin.freemarker;
 
-import freemarker.template.Configuration;
-import freemarker.template.Template;
-
 import java.io.File;
 import java.io.FileWriter;
 import java.nio.file.Path;
 import java.util.HashMap;
 import java.util.Map;
+
+import freemarker.template.Configuration;
+import freemarker.template.Template;
 
 /**
  * Knows how to generate an output file given five things:
