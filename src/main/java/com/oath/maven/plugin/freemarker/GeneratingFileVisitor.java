@@ -14,7 +14,6 @@ import java.util.logging.Logger;
 import org.apache.maven.execution.MavenSession;
 
 import freemarker.template.Configuration;
-import org.apache.maven.project.MavenProject;
 
 /**
  * FileVisitor designed to process json data files. The json file parsed into

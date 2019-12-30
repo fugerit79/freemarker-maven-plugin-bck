@@ -3,11 +3,6 @@
 
 package com.oath.maven.plugin.freemarker;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.reflect.TypeToken;
-import com.google.gson.stream.JsonReader;
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
@@ -15,6 +10,11 @@ import java.lang.reflect.Type;
 import java.nio.file.Path;
 import java.util.HashMap;
 import java.util.Map;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.stream.JsonReader;
 
 public class JsonPropertiesProvider implements OutputGeneratorPropertiesProvider {
 	private final Gson gson;
