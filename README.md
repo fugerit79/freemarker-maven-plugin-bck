@@ -1,10 +1,8 @@
 # Credits
 
 This is a fork of project : 
-[https://github.com/yahoo/freemarker-maven-plugin](https://github.com/yahoo/freemarker-maven-plugin)
-Main reason for forking are : 
-- need of minor changes to the original plugin
-- need of publishing on maven repository central
+[https://github.com/yahoo/freemarker-maven-plugin](https://github.com/yahoo/freemarker-maven-plugin).  
+Check [changelog](Changelog.md) for more informations.  
 
 # freemarker-maven-plugin
 > A flexible plugin to generate source files from FreeMarker templates and JSON data.
